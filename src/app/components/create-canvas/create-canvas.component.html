@@ -1,0 +1,17 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxFlex="100">
+    <canvas #canvas id="step-one-canvas" width="480" height="320"></canvas>
+  </div>
+  <!-- Add dropdowns with code for each -->
+  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="100" class="options-container">
+    <div fxLayout="column" fxFlex="32">
+      <button (click)="addSquare()">Add Square</button>
+    </div>
+    <div fxLayout="column" fxFlex="33">
+      <button (click)="addSquare()">Add Circle</button>
+    </div>
+    <div fxLayout="column" fxFlex="32">
+      <button (click)="addSquare()">Add Triangle</button>
+    </div>
+  </div>
+</div>

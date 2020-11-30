@@ -6,5 +6,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'CodeDay-Workshop-JS-Animations-Website';
+  readonly title: string = 'CodeDay Workshop JS Animations 12/04/2020';
 }
