@@ -1,0 +1,26 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxFlex="100">
+    <button>Previous Step</button>
+    <button (click)="nextStep()">Next Step</button>
+  </div>
+  <div fxLayout="column" fxFlex="100">
+    <div fxLayout="row" fxFlex="100">
+      <canvas #canvas id="step-two-canvas" width="480" height="320"></canvas>
+    </div>
+    <!-- Add dropdowns with code for each -->
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="100" class="options-container">
+      <div fxLayout="column" fxFlex="25">
+        <button>Increase Paddle Width</button>
+      </div>
+      <div fxLayout="column" fxFlex="25">
+        <button>Decrease Paddle Width</button>
+      </div>
+      <div fxLayout="column" fxFlex="25">
+        <button>Increase Paddle Height</button>
+      </div>
+      <div fxLayout="column" fxFlex="25">
+        <button>Decrease Paddle Height</button>
+      </div>
+    </div>
+  </div>
+</div>

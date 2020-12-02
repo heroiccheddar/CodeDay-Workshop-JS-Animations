@@ -1,0 +1,16 @@
+<div class="code-container" fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxFlex="100" fxLayoutAlign="space-around center">
+    <div class="html" fxLayout="column" fxFlex="30">
+      <label for="html">index.html</label>
+      <textarea id="html" disabled [value]="outputHtml" rows="20"></textarea>
+    </div>
+    <div class="js" fxLayout="column" fxFlex="30">
+      <label for="js">scripts.js</label>
+      <textarea id="js" disabled [value]="outputJs" rows="20"></textarea>
+    </div>
+    <div class="css" fxLayout="column" fxFlex="30">
+      <label for="css">styles.css</label>
+      <textarea id="css" disabled [value]="outputCss" rows="20"></textarea>
+    </div>
+  </div>
+</div>

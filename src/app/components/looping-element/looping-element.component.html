@@ -1,0 +1,24 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxFlex="100">
+    <button (click)="previousStep()">Previous Step</button>
+    <button (click)="nextStep()">Next Step</button>
+  </div>
+  <div fxLayout="column" fxFlex="100">
+    <div fxLayout="row" fxFlex="100">
+      <canvas #canvas id="step-two-canvas" width="480" height="320"></canvas>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="100" class="options-container">
+      <div fxLayout="column" fxFlex="32">
+        <button mat-raised-button (click)="increaseSize()">Increase Size</button>
+      </div>
+      <div fxLayout="column" fxFlex="33">
+        <button mat-raised-button *ngIf="!clicked" (click)="launch()">Launch</button>
+        <button mat-raised-button *ngIf="clicked" (click)="reset()">Reset Position</button>
+      </div>
+      <div fxLayout="column" fxFlex="32">
+        <button mat-raised-button (click)="decreaseSize()">Decrease Size</button>
+      </div>
+    </div>
+  </div>
+  <app-display-code [outputHtml]="stepThreeHtml" [outputJs]="stepThreeJs" [outputCss]="stepThreeCss"></app-display-code>
+</div>

@@ -1,0 +1,17 @@
+<div fxLayout="column" fxFlex="100">
+  <div fxLayout="row" fxFlex="100" class="canvas-row">
+    <canvas #selectShapeCanvas id="select-shape-canvas" width="100px" height="100px"></canvas>
+  </div>
+  <div fxLayout="row" fxFlex="100" class="color-picker-row">
+    <color-compact [color]="color" (onChange)="colorSelected($event)"></color-compact>
+  </div>
+  <div fxLayout="row" fxFlex="100" class="selection-row">
+    <div class="selection-prompt">Do you choose this shape?</div>
+  </div>
+  <div fxLayout="row" fxFlex="100" class="button-row">
+    <div>
+      <button mat-raised-button color="primary" (click)="onConfirm()">Yes</button>
+      <button mat-raised-button color="warn" (click)="onCancel()">No</button>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,17 @@
-<h1>It's dangerous to go alone! Take this.</h1>
-<p>8 bit torch here</p>
-<p>This torch will highlight special items of note along your journey</p>
-
-<button (click)="nextStep()">Next Step</button>
+<div class="welcome-container center-align" fxLayout="column" fxFlex="100">
+  <div class="welcome-header center-align" fxLayout="row" fxFlex="100">
+    <h1 class="mat-display-3">It's dangerous to go alone! Take this.</h1>
+  </div>
+  <div class="torch-container" fxLayout="column" fxFlex="100">
+    <img class="torch-img" src="assets/torch.gif"  alt="torch"/>
+    <p class="torch-info center-align">This torch will highlight special items of note throughout your journey</p>
+  </div>
+  <div class="code-container" fxLayout="column" fxFlex="100">
+    <h1 class="center-align">Take these too! These will prepare you for your journey.</h1>
+    <h6 class="center-align">(Create these files and paste the respective code snippets into them)</h6>
+    <app-display-code [outputHtml]="stepOneHtml" [outputJs]="stepOneJs" [outputCss]="stepOneJs"></app-display-code>
+  </div>
+  <div class="next-button-container" fxLayout="row" fxLayoutAlign="center center">
+    <button mat-raised-button color="primary" (click)="nextStep()">Next Step</button>
+  </div>
+</div>

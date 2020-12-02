@@ -1,17 +1,33 @@
-<div fxLayout="column" fxFlex="100">
-  <div fxLayout="row" fxFlex="100">
-    <canvas #canvas id="step-one-canvas" width="480" height="320"></canvas>
+<div class="create-canvas-container" fxLayout="column" fxFlex="100">
+  <div fxLayout="column" fxFlex="100">
+    <div fxLayout="row" fxFlex="100" fxLayoutAlign="center center">
+      <canvas #canvas id="step-two-canvas" width="100px" height="100px"></canvas>
+    </div>
+    <!-- Add dropdowns with code for each -->
+    <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100" class="options-container">
+      <div class="shape-selection-image-container container">
+        <img class="shape-selection-image" src="assets/oak-lab.png" alt="oak-lab" />
+        <div *ngIf="selectedShape === null" class="pokeball-container tag" fxLayout="row"
+             fxLayoutAlign="space-between center">
+          <img class="pokeball square-pokeball" src="assets/pokeball.png" alt="pokeball"
+               (click)="openConfirmationDialog('square')" />
+          <img class="pokeball circle-pokeball" src="assets/pokeball.png" alt="pokeball"
+               (click)="openConfirmationDialog('circle')" />
+          <img class="pokeball triangle-pokeball" src="assets/pokeball.png" alt="pokeball"
+               (click)="openConfirmationDialog('triangle')" />
+        </div>
+        <div *ngIf="selectedShape !== null" class="pokeball-container tag" fxLayout="row"
+             fxLayoutAlign="space-between center">
+          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
+          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
+          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
+        </div>
+      </div>
+    </div>
   </div>
-  <!-- Add dropdowns with code for each -->
-  <div fxLayout="row" fxLayoutAlign="space-around center" fxFlex="100" class="options-container">
-    <div fxLayout="column" fxFlex="32">
-      <button (click)="addSquare()">Add Square</button>
-    </div>
-    <div fxLayout="column" fxFlex="33">
-      <button (click)="addSquare()">Add Circle</button>
-    </div>
-    <div fxLayout="column" fxFlex="32">
-      <button (click)="addSquare()">Add Triangle</button>
-    </div>
+  <app-display-code [outputHtml]="stepTwoHtml" [outputJs]="stepTwoJs" [outputCss]="stepTwoCss"></app-display-code>
+  <div class="button-container" fxLayout="row" fxFlex="100" fxLayoutAlign="space-between center">
+    <button mat-raised-button color="warn" (click)="previousStep()">Previous Step</button>
+    <button mat-raised-button color="primary" (click)="nextStep()" [disabled]="nextButtonDisabled">Next Step</button>
   </div>
 </div>
