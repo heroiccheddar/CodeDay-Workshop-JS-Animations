@@ -4,12 +4,14 @@
   },
   "extends": "./tsconfig.json",
   "include": [
-    "src/**/*.ts",
+    "experiment/src/**/*.ts",
     ".eslintrc.js",
     "tests/**/*.ts",
     "e2e/src/*.ts",
     "e2e/protractor.conf.js",
-    "karma.conf.js"
+    "experiment/karma.conf.js"
   ],
-  "exclude": ["node_modules"]
+  "exclude": [
+    "../node_modules"
+  ]
 }

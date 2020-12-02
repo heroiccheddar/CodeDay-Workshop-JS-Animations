@@ -1,21 +1,26 @@
 {
   "shape": {
-    "color": ""
+    "color": "#FE9200"
   },
   "paddle": {
     "paddleHeight": 10,
     "paddleWidth": 75
   },
   "brick": {
-    "brickRowCount": 3,
+    "brickRowCount": 4,
     "brickColumnCount": 5,
     "brickWidth": 75,
     "brickHeight": 20,
     "brickSpacing": 10,
     "brickTopPadding": 30,
-    "brickLeftPadding": 30
+    "brickLeftPadding": 30,
+    "color": "#0095DD"
   },
   "messages": {
-    "gameOver": "Game Over"
+    "gameOver": "Game Over",
+    "gameWon": "You Win!"
+  },
+  "gameplay": {
+    "lives": 3
   }
 }

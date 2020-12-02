@@ -12,4 +12,6 @@ export default class BrickConfig {
   brickTopPadding: number;
 
   brickLeftPadding: number;
+
+  color: string;
 }

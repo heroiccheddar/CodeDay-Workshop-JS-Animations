@@ -7,6 +7,7 @@ import { BouncingElementComponent } from './components/bouncing-element/bouncing
 import { PaddleElementComponent } from './components/paddle-element/paddle-element.component';
 import { BricksComponent } from './components/bricks/bricks.component';
 import { CollisionComponent } from './components/collision/collision.component';
+import { ScoringComponent } from './components/scoring/scoring.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,9 @@ const routes: Routes = [
   },
   {
     path: 'stepSix', component: CollisionComponent,
+  },
+  {
+    path: 'stepSeven', component: ScoringComponent,
   },
 ];
 

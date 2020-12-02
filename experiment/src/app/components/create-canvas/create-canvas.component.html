@@ -6,21 +6,21 @@
     <!-- Add dropdowns with code for each -->
     <div fxLayout="row" fxLayoutAlign="center center" fxFlex="100" class="options-container">
       <div class="shape-selection-image-container container">
-        <img class="shape-selection-image" src="assets/oak-lab.png" alt="oak-lab" />
+        <img class="shape-selection-image" src="../../../assets/oak-lab.png" alt="oak-lab" />
         <div *ngIf="selectedShape === null" class="pokeball-container tag" fxLayout="row"
              fxLayoutAlign="space-between center">
-          <img class="pokeball square-pokeball" src="assets/pokeball.png" alt="pokeball"
+          <img class="pokeball square-pokeball" src="../../../assets/pokeball.png" alt="pokeball"
                (click)="openConfirmationDialog('square')" />
-          <img class="pokeball circle-pokeball" src="assets/pokeball.png" alt="pokeball"
+          <img class="pokeball circle-pokeball" src="../../../assets/pokeball.png" alt="pokeball"
                (click)="openConfirmationDialog('circle')" />
-          <img class="pokeball triangle-pokeball" src="assets/pokeball.png" alt="pokeball"
+          <img class="pokeball triangle-pokeball" src="../../../assets/pokeball.png" alt="pokeball"
                (click)="openConfirmationDialog('triangle')" />
         </div>
         <div *ngIf="selectedShape !== null" class="pokeball-container tag" fxLayout="row"
              fxLayoutAlign="space-between center">
-          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
-          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
-          <img class="disabled-pokeball" src="assets/pokeball.png" alt="pokeball" />
+          <img class="disabled-pokeball" src="../../../assets/pokeball.png" alt="pokeball" />
+          <img class="disabled-pokeball" src="../../../assets/pokeball.png" alt="pokeball" />
+          <img class="disabled-pokeball" src="../../../assets/pokeball.png" alt="pokeball" />
         </div>
       </div>
     </div>
