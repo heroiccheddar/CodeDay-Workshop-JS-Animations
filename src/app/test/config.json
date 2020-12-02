@@ -1,0 +1,21 @@
+{
+  "shape": {
+    "color": ""
+  },
+  "paddle": {
+    "paddleHeight": 10,
+    "paddleWidth": 75
+  },
+  "brick": {
+    "brickRowCount": 3,
+    "brickColumnCount": 5,
+    "brickWidth": 75,
+    "brickHeight": 20,
+    "brickSpacing": 10,
+    "brickTopPadding": 30,
+    "brickLeftPadding": 30
+  },
+  "messages": {
+    "gameOver": "Game Over"
+  }
+}

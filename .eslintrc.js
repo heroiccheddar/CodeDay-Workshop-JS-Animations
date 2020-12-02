@@ -9,5 +9,6 @@ module.exports = {
     'no-console': 'off',
     'no-param-reassign': 'off',
     'react/static-property-placement': 'off',
+    'no-plusplus': 'off',
   },
 };

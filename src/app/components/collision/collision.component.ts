@@ -7,11 +7,11 @@ import BrickConfig from '../../models/brick-config';
 import { PaddleConfig } from '../../models/paddle-config';
 
 @Component({
-  selector: 'app-bricks',
-  templateUrl: './bricks.component.html',
-  styleUrls: ['./bricks.component.scss'],
+  selector: 'app-collision',
+  templateUrl: './collision.component.html',
+  styleUrls: ['./collision.component.scss'],
 })
-export class BricksComponent implements AfterViewInit, OnInit {
+export class CollisionComponent implements AfterViewInit, OnInit {
   @ViewChild('canvas')
   canvas: any;
 
@@ -66,31 +66,34 @@ export class BricksComponent implements AfterViewInit, OnInit {
     for (let c = 0; c < this.brickConfig.brickColumnCount; c += 1) {
       this.bricks[c] = [];
       for (let r = 0; r < this.brickConfig.brickRowCount; r += 1) {
-        this.bricks[c][r] = { x: 0, y: 0 };
+        this.bricks[c][r] = { x: 0, y: 0, status: 1 };
       }
     }
   }
 
-  drawBricks() {
-    for (let i = 0; i < this.brickConfig.brickColumnCount; i += 1) {
-      for (let j = 0; j < this.brickConfig.brickRowCount; j += 1) {
-        const brickX = (i * (this.brickConfig.brickWidth + this.brickConfig.brickSpacing)) + this.brickConfig.brickLeftPadding;
-        const brickY = (j * (this.brickConfig.brickHeight + this.brickConfig.brickSpacing)) + this.brickConfig.brickTopPadding;
-
-        this.bricks[i][j] = {
-          x: brickX,
-          y: brickY,
-        };
-        this.context.beginPath();
-        this.context.rect(brickX, brickY, this.brickConfig.brickWidth, this.brickConfig.brickHeight);
-        this.context.fillStyle = '#0095DD';
-        this.context.fill();
-        this.context.closePath();
+  collisionDetection() {
+    for (let c = 0; c < this.brickConfig.brickColumnCount; c++) {
+      for (let r = 0; r < this.brickConfig.brickRowCount; r++) {
+        const b = this.bricks[c][r];
+        if (b.status === 1) {
+          if (this.x > b.x && this.x < b.x + this.brickConfig.brickWidth && this.y > b.y && this.y < b.y + this.brickConfig.brickHeight) {
+            this.dy = -this.dy;
+            b.status = 0;
+          }
+        }
       }
     }
   }
 
-  drawPaddle(): void {
+  drawBall() {
+    this.context.beginPath();
+    this.context.arc(this.x, this.y, this.ballRadius, 0, Math.PI * 2);
+    this.context.fillStyle = '#0095DD';
+    this.context.fill();
+    this.context.closePath();
+  }
+
+  drawPaddle() {
     this.context.beginPath();
     this.context.rect(this.paddleX, this.canvas.height - this.paddleConfig.paddleHeight, this.paddleConfig.paddleWidth, this.paddleConfig.paddleHeight);
     this.context.fillStyle = '#0095DD';
@@ -98,51 +101,50 @@ export class BricksComponent implements AfterViewInit, OnInit {
     this.context.closePath();
   }
 
-  drawBall(): void {
-    this.context.beginPath();
-    this.context.arc(this.x, this.y, 10, 0, Math.PI * 2);
-    this.context.fillStyle = '#0095DD';
-    this.context.fill();
-    this.context.closePath();
-  }
-
-  draw(): void {
-    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
-    this.drawBall();
-    this.drawPaddle();
-    this.drawBricks();
-
-    // start this step
-
-    if (this.rightPressed) {
-      this.paddleX += 7;
-      if (this.paddleX + this.paddleConfig.paddleWidth > this.canvas.width) {
-        this.paddleX = this.canvas.width - this.paddleConfig.paddleWidth;
-      }
-    } else if (this.leftPressed) {
-      this.paddleX -= 7;
-      if (this.paddleX < 0) {
-        this.paddleX = 0;
+  drawBricks() {
+    for (let c = 0; c < this.brickConfig.brickColumnCount; c++) {
+      for (let r = 0; r < this.brickConfig.brickRowCount; r++) {
+        if (this.bricks[c][r].status === 1) {
+          const brickX = (c * (this.brickConfig.brickWidth + this.brickConfig.brickSpacing)) + this.brickConfig.brickLeftPadding;
+          const brickY = (r * (this.brickConfig.brickHeight + this.brickConfig.brickSpacing)) + this.brickConfig.brickTopPadding;
+          this.bricks[c][r].x = brickX;
+          this.bricks[c][r].y = brickY;
+          this.context.beginPath();
+          this.context.rect(brickX, brickY, this.brickConfig.brickWidth, this.brickConfig.brickHeight);
+          this.context.fillStyle = '#0095DD';
+          this.context.fill();
+          this.context.closePath();
+        }
       }
     }
+  }
 
-    // end this step
+  draw() {
+    this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    this.drawBricks();
+    this.drawBall();
+    this.drawPaddle();
+    this.collisionDetection();
 
     if (this.x + this.dx > this.canvas.width - this.ballRadius || this.x + this.dx < this.ballRadius) {
       this.dx = -this.dx;
     }
-
     if (this.y + this.dy < this.ballRadius) {
       this.dy = -this.dy;
     } else if (this.y + this.dy > this.canvas.height - this.ballRadius) {
       if (this.x > this.paddleX && this.x < this.paddleX + this.paddleConfig.paddleWidth) {
         this.dy = -this.dy;
       } else {
-        // eslint-disable-next-line no-alert
-        // alert('GAME OVER');
+        // alert("GAME OVER");
         document.location.reload();
         clearInterval(this.interval); // Needed for Chrome to end game
       }
+    }
+
+    if (this.rightPressed && this.paddleX < this.canvas.width - this.paddleConfig.paddleWidth) {
+      this.paddleX += 7;
+    } else if (this.leftPressed && this.paddleX > 0) {
+      this.paddleX -= 7;
     }
 
     this.x += this.dx;

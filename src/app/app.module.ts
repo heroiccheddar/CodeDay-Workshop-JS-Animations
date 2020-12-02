@@ -12,6 +12,7 @@ import { WelcomeModule } from './components/welcome/welcome.module';
 import { ServicesModule } from './services/services.module';
 import { DisplayCodeModule } from './components/display-code/display-code.module';
 import { BricksModule } from './components/bricks/bricks.module';
+import { CollisionModule } from './components/collision/collision.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BricksModule } from './components/bricks/bricks.module';
     AppRoutingModule,
     BricksModule,
     BrowserAnimationsModule,
+    CollisionModule,
     CreateCanvasModule,
     DisplayCodeModule,
     LoopingElementModule,
