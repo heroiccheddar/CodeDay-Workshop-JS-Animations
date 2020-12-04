@@ -5,5 +5,9 @@ canvas {
 }
 
 .messageBar {
-  font-size: large;
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
 }

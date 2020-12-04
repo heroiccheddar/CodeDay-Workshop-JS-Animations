@@ -3,3 +3,11 @@ canvas {
   display: block;
   margin: 0 auto;
 }
+
+.messageBar {
+  text-align: center;
+}
+
+.button-container {
+  text-align: center;
+}

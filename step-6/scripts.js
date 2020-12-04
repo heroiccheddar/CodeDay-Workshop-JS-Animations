@@ -16,21 +16,12 @@ const config = {
     'brickLeftPadding': 30,
   },
   'messages': {
-    'font': '16px Arial',
     'gameOver': 'Game Over. Play Again?',
-    'gameWon': 'You Win! Play Again?',
-    'score': 'Score: ',
-    'lives': 'Lives: '
-  },
-  'gameplay': {
-    'lives': 3
   },
   'colors': {
     'ball': '#FE9200',
-    'brick': '#0095DD',
     'paddle': '#0095DD',
-    'scoreText': '#0095DD',
-    'livesText': '#0095DD'
+    'brick': '#0095DD',
   }
 };
 
@@ -45,26 +36,22 @@ let dy = -2;
 let paddleX = (canvas.width - config.paddle.paddleWidth) / 2;
 let rightPressed = false;
 let leftPressed = false;
-let score = 0;
-let lives = 3;
 let gameActive = false;
 
 function init() {
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
 
-  for (let c = 0; c < config.brick.brickColumnCount; c++) {
-    bricks[c] = [];
-    for (let r = 0; r < config.brick.brickRowCount; r++) {
-      bricks[c][r] = { x: 0, y: 0, status: 1 };
+  for (let column = 0; column < config.brick.brickColumnCount; column++) {
+    bricks[column] = [];
+    for (let row = 0; row < config.brick.brickRowCount; row++) {
+      bricks[column][row] = { x: 0, y: 0 };
     }
   }
 }
 
 function startGame() {
   gameActive = true;
-  lives = 3;
-  score = 0;
   init();
   draw();
 }
@@ -82,27 +69,6 @@ function keyUpHandler(e) {
     rightPressed = false;
   } else if (e.key === 'Left' || e.key === 'ArrowLeft') {
     leftPressed = false;
-  }
-}
-
-
-
-function collisionDetection() {
-  for (let c = 0; c < config.brick.brickColumnCount; c++) {
-    for (let r = 0; r < config.brick.brickRowCount; r++) {
-      const b = bricks[c][r];
-      if (b.status === 1) {
-        if (x > b.x && x < b.x + config.brick.brickWidth && y > b.y && y < b.y + config.brick.brickHeight) {
-          dy = -dy;
-          b.status = 0;
-          score++;
-          if (score === config.brick.brickRowCount * config.brick.brickColumnCount) {
-            gameActive = false;
-            displayMessage(config.messages.gameWon);
-          }
-        }
-      }
-    }
   }
 }
 
@@ -140,18 +106,6 @@ function drawBricks() {
   }
 }
 
-function drawScore() {
-  ctx.font = config.messages.font;
-  ctx.fillStyle = config.colors.scoreText;
-  ctx.fillText(config.messages.score + score, 8, 20);
-}
-
-function drawLives() {
-  ctx.font = config.messages.font;
-  ctx.fillStyle = config.colors.livesText;
-  ctx.fillText(config.messages.lives + lives, canvas.width - 65, 20);
-}
-
 function displayMessage(message) {
   document.getElementsByClassName('messageBar').item(0).innerHTML = message;
 }
@@ -161,9 +115,6 @@ function draw() {
   drawBricks();
   drawBall();
   drawPaddle();
-  drawScore();
-  drawLives();
-  collisionDetection();
 
   if (x + dx > canvas.width - config.ball.radius || x + dx < config.ball.radius) {
     dx = -dx;
