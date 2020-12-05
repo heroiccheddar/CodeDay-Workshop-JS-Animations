@@ -4,7 +4,7 @@ const config = {
   },
   'paddle': {
     'paddleHeight': 10,
-    'paddleWidth': 150,
+    'paddleWidth': 75,
   },
   'brick': {
     'brickRowCount': 5,
@@ -50,6 +50,7 @@ let lives = 3;
 let gameActive = false;
 
 function init() {
+  gameActive = true;
   document.addEventListener('keydown', keyDownHandler, false);
   document.addEventListener('keyup', keyUpHandler, false);
 
@@ -62,11 +63,7 @@ function init() {
 }
 
 function startGame() {
-  gameActive = true;
-  lives = 3;
-  score = 0;
-  init();
-  draw();
+  window.location.reload();
 }
 
 function keyDownHandler(e) {
@@ -84,8 +81,6 @@ function keyUpHandler(e) {
     leftPressed = false;
   }
 }
-
-
 
 function collisionDetection() {
   for (let c = 0; c < config.brick.brickColumnCount; c++) {
